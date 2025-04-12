@@ -1,2 +1,1 @@
-# cbe-transaction-verifier
-CBE Transaction Verifier
+# CBE Transaction Verifier
