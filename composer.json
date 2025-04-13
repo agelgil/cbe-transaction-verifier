@@ -2,7 +2,7 @@
     "name": "agelgil/cbe-transaction-verifier",
     "description": "CBE Transaction Verifier",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Samson Endale",
