@@ -1,0 +1,33 @@
+{
+    "name": "agelgil/cbe-transaction-verifier",
+    "description": "CBE Transaction Verifier",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Samson Endale",
+            "email": "git@sam.et"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Agelgil\\CBETransactionVerifier\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "thiagoalessio/tesseract_ocr": "^2.13",
+        "smalot/pdfparser": "^2.12",
+        "illuminate/support": "^12.8",
+        "illuminate/http": "^12.8"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8",
+        "phpstan/phpstan": "^2.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
