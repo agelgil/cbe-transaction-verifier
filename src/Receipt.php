@@ -26,14 +26,20 @@ class Receipt
         return $this;
     }
 
-    /** @throws Exception|RequestException|ConnectionException */
-    public function fetch(string $transactionId, string $accountLast8): Document
+    /** @throws Exception|ConnectionException */
+    public function fetch(string $transactionId, string ...$accountLast8): ?Document
     {
-        $url = $this->prefix.$transactionId.$accountLast8;
+        foreach ($accountLast8 as $last8) {
+            $url = $this->prefix.$transactionId.$last8;
 
-        /** @var Response $response */
-        $response = Http::withoutVerifying()->get($url)->throw();
+            /** @var Response $response */
+            $response = Http::withoutVerifying()->get($url);
 
-        return $this->parser->parseContent($response->body());
+            if ($response->successful()) {
+                return $this->parser->parseContent($response->body());
+            }
+        }
+
+        return null;
     }
 }

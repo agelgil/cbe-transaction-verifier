@@ -26,22 +26,22 @@ class Verify
     }
 
     /** @throws TesseractOcrException|ConnectionException|RequestException */
-    public function fromImage(string $path, string $accountLast8): ?Transaction
+    public function fromImage(string $path, string ...$accountLast8): ?Transaction
     {
         $content = $this->tesseract->transactionId($path);
 
         if ($transactionId = Str::match($this->pattern, $content)) {
-            return $this->fromTransactionId($transactionId, $accountLast8);
+            return $this->fromTransactionId($transactionId, ...$accountLast8);
         }
 
         return null;
     }
 
     /** @throws ConnectionException|RequestException */
-    public function fromTransactionId(string $transactionId, string $accountLast8): Transaction
+    public function fromTransactionId(string $transactionId, string ...$accountLast8): ?Transaction
     {
-        $document = $this->receipt->fetch($transactionId, $accountLast8);
+        $document = $this->receipt->fetch($transactionId, ...$accountLast8);
 
-        return $this->parser->parse($document->getText());
+        return $document ? $this->parser->parse($document->getText()) : null;
     }
 }
